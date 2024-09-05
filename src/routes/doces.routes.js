@@ -1,3 +1,7 @@
+import { Router } from "express";
+
+const docesRoutes = Router();
+
 const guloseimas = [
     {
         id: 1,
@@ -16,11 +20,11 @@ const guloseimas = [
     },
 ];
 
-app.get("/doces", (req, res) => {
+docesRoutes.get("/", (req, res) => {
     return res.status(200).send(guloseimas)
 })
 
-app.post("/doces", (req, res) => {
+docesRoutes.post("/", (req, res) => {
     const {nome, preco} = req.body;
     const novoDoce = {
         id: guloseimas.length + 1,
@@ -31,3 +35,5 @@ app.post("/doces", (req, res) => {
     guloseimas.push(novoDoce)
     return res.status(201).send(guloseimas)
 })
+
+export default docesRoutes;
